@@ -4,15 +4,14 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Sistema Bancario</title>
-        <link rel="stylesheet" type="text/css" href="reset.css" media="screen" />
-        <link rel="stylesheet" type="text/css" href="style.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="components/header/style.css" media="screen" />
     </head>
     <body>
         <div id='header'>
             <div>
                 <p>BootstrapJavaBank</p>
             </div>
-            <h1>Bem-Vindo!</h1>
+            <h1>${param.title}</h1>
         </div>
     </body>
 </html>

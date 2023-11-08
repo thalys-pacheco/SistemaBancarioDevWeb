@@ -1,0 +1,24 @@
+#header{
+    width: 100%;
+    margin-bottom: 100px;
+    border-bottom: #DEE2E6 1px solid;
+}
+
+#header>div{
+    width: 100%;
+    background-color: #7749F8;
+    padding: 6px 160px;
+}
+
+#header>div>p {
+    color: #FFFFFF;
+    font-size: 23px;
+    font-weight: 800;
+}
+
+#header>h1 {
+    color: #343A40;
+    font-size: 40px;
+    font-weight: 800;
+    margin: 32px 160px;
+}
