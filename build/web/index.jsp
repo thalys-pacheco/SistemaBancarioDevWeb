@@ -8,13 +8,7 @@
         <link rel="stylesheet" type="text/css" href="style.css" media="screen" />
     </head>
     <body>
-        <% %>
-        <div id="header">
-            <div>
-                <p>BootstrapJavaBank</p>
-            </div>
-            <h1>Bem-Vindo!</h1>
-        </div>
+        <jsp:include page="header.jsp" />
         <form id="form">
             <input class="input" type="text" placeholder="Login" />
             <input class="input" type="password" placeholder="Senha" />

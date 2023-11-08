@@ -8,11 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(urlPatterns = {"/banco"})
 public class banco extends HttpServlet {
-
-    void getHeader(){
-        
-    }
-    request
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
