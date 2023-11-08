@@ -4,7 +4,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Sistema Bancario</title>
-        <link rel="stylesheet" type="text/css" href="components/header/style.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="${param.path}header/style.css" media="screen" />
     </head>
     <body>
         <div id='header'>

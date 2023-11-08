@@ -8,8 +8,9 @@
         <link rel="stylesheet" type="text/css" href="style.css" media="screen" />
     </head>
     <body>
-        <jsp:include page="components/header/header.jsp">
+        <jsp:include page="components/header">
             <jsp:param name="title" value="Bem-Vindo!" />
+            <jsp:param name="path" value="components/" />
          </jsp:include>
         <form id="form">
             <input class="input" type="text" placeholder="Login" />
