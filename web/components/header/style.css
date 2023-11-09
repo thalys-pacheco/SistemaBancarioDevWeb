@@ -7,12 +7,19 @@
 #header>div{
     background-color: #7749F8;
     padding: 6px 160px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
-#header>div>p {
+.textHeader {
     color: #FFFFFF;
     font-size: 23px;
     font-weight: 800;
+}
+
+#header>div>a {
+    text-decoration: none;
 }
 
 #header>h1 {
