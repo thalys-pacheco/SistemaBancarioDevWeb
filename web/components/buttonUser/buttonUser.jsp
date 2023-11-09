@@ -1,6 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<link rel="stylesheet" type="text/css" href="../../components/buttonUser/style.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="components/buttonUser/style.css" media="screen" />
 <div id='containerButtonUser'>
     <a href="../${param.href}">
         <div id='titleContainerButtonUser'>
