@@ -1,18 +1,30 @@
+<%@page import="java.util.List"%>
+<%@page import="java.util.Map"%>
+<%@page import="models.UsuarioModel"%>
+<%@page import="models.ContaModel"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Sistema Bancario - Admin</title>
-        <link rel="stylesheet" type="text/css" href="../../theme/reset.css" media="screen" />
-        <link rel="stylesheet" type="text/css" href="style.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="theme/reset.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="pages/home/style.css" media="screen" />
     </head>
     <body>
+        <%
+            UsuarioModel usuario = (UsuarioModel) request.getAttribute("usuario");
+            Map<String, Object> usuarioDados = usuario.getDadosUsuario();
+            List<ContaModel> contas = (List<ContaModel>) request.getAttribute("contas");
+            Map<String, Object> contaDados = contas.get(0).getDadosConta();
+        %>
+        
         <jsp:include page="../../components/header/header.jsp">
-            <jsp:param name="title" value="Ola Diego" />
-         </jsp:include>
+            <jsp:param name="title" value='Ola,' />
+        </jsp:include>
         <div id="containerPage">
-            <p id="saldo">Saldo: R$99,99</p>
+            <h1>Seja bem-vindo <%=usuarioDados.get("nome")%></h1>
+            <p id="saldo">Saldo: R$<%= contaDados.get("saldo") %></p>
             <div id="containerButtons">
                 <div id="sessionButtons">
                     <jsp:include page="../../components/buttonUser/buttonUser.jsp">

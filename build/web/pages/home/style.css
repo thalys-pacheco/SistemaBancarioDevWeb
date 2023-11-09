@@ -2,6 +2,13 @@
     padding: 0px 160px;
 }
 
+#containerPage>h1 {
+    color: #343A40;
+    font-size: 40px;
+    font-weight: 800;
+    margin-bottom: 100px;
+}
+
 #saldo{
     color: #343A40;
     margin-bottom: 100px;

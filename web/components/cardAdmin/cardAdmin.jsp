@@ -1,8 +1,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<link rel="stylesheet" type="text/css" href="../../components/cardAdmin/style.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="components/cardAdmin/style.css" media="screen" />
 <div id='containerCardAdmin'>
-    <a href="../${param.href}">
+    <a href="forward?href=${param.href}">
         <div id='titleContainerCardAdmin'>
             <h1>${param.titulo}</h1>
         </div>
