@@ -1,0 +1,38 @@
+#containerCardAdmin {
+    width: 350px;
+    height: 190px;
+    border: #6C757D 1px solid;
+    border-radius: 12px;
+}
+
+#containerCardAdmin a {
+    text-decoration: none;
+}
+
+#titleContainerCardAdmin{
+    background-color: #F8F9FA;
+    padding: 16px 24px;
+    border-radius: 12px 12px 0px 0px;
+}
+
+#textContainerCardAdmin{
+    padding: 24px;
+}
+
+#titleContainerCardAdmin>h1{
+    font-size: 20px;
+    font-weight: 700;
+    color: #212529;
+}
+
+#textContainerCardAdmin>h2{
+    font-size: 20px;
+    font-weight: 700;
+    color: #6C757D;
+    margin-bottom: 12px;
+}
+
+#textContainerCardAdmin>p{
+    font-size: 16px;
+    color: #6C757D;   
+}
