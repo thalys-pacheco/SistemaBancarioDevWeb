@@ -1,4 +1,4 @@
-import models.UsuarioModel;
+import entidade.UsuarioEntidade;
 import provider.UsuarioProvider;
 
 
@@ -25,7 +25,7 @@ public class usuario extends HttpServlet {
             rd.forward(request, response);
         }else{
             int id = UsuarioProvider.getTamanho();
-            UsuarioModel usuario = new UsuarioModel(id,nome,tipo, cpf,email);
+            UsuarioEntidade usuario = new UsuarioEntidade(id,nome,tipo, cpf,email);
             UsuarioProvider.addUsuario(usuario);
             RequestDispatcher rd = request.getRequestDispatcher("/pages/admin/index.jsp");
             rd.forward(request, response);
