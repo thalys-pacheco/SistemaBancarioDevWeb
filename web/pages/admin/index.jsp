@@ -12,7 +12,7 @@
             <jsp:param name="title" value="Painel" />
          </jsp:include>
         <div id="containerPage">
-            <jsp:include page="../../components/cardAdmin/cardAdmin.jsp">
+            <jsp:include page="../../components/buttonAdmin/buttonAdmin.jsp">
                 <jsp:param name="titulo" value="Cadastrar Usuario" />
                 <jsp:param name="subtitulo" value="Cadastrar novo usuario" />
                 <jsp:param name="texto" value="With supporting text below as a natural lead-in to additional content." />
