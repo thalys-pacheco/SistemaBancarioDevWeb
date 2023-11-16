@@ -1,4 +1,4 @@
-import models.UsuarioModel;
+import entidade.UsuarioEntidade;
 import provider.UsuarioProvider;
 import provider.ContaProvider;
 
@@ -10,7 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import models.ContaModel;
+import entidade.ContaEntidade;
 
 @WebServlet(urlPatterns = {"/conta"})
 public class conta extends HttpServlet {    
@@ -23,12 +23,12 @@ public class conta extends HttpServlet {
             RequestDispatcher rd = request.getRequestDispatcher("/pages/cadConta/index.jsp");
             rd.forward(request, response);
         }else{
-            UsuarioModel usuario = UsuarioProvider.getUsuario(cpf);
+            UsuarioEntidade usuario = UsuarioProvider.getUsuario(cpf);
             if(usuario!=null){
                 Map<String, Object> dados = usuario.getDadosUsuario();
                 if("cliente".equals(dados.get("tipo"))){
                     int id = ContaProvider.getTamanho();
-                    ContaModel conta = new ContaModel(id, (int) dados.get("id") ,tipo);
+                    ContaEntidade conta = new ContaEntidade(id, (int) dados.get("id") ,tipo);
                     ContaProvider.addConta(conta);
                     RequestDispatcher rd = request.getRequestDispatcher("/pages/admin/index.jsp");
                     rd.forward(request, response);
