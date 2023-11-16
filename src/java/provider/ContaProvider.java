@@ -1,14 +1,14 @@
 package provider;
 
 import java.util.List;
-import models.ContaModel;
+import entidade.ContaEntidade;
 import storage.ContaStorage;
 
 public class ContaProvider {
 
     static public ContaStorage contaStorage = new ContaStorage();
     
-    static public void addConta(ContaModel conta){
+    static public void addConta(ContaEntidade conta){
         contaStorage.addConta(conta);
     }
     
@@ -16,7 +16,16 @@ public class ContaProvider {
         return contaStorage.getTamanho();
     }
     
-    static public List<ContaModel> getContas(int id){
+    static public List<ContaEntidade> getContas(int id){
         return contaStorage.getContas(id);
     }
+    
+    static public void deposito(int id, double valor){
+        contaStorage.deposito(id, valor);
+    }
+    
+    static public void saque(int id, double valor){
+        contaStorage.saque(id, valor);
+    }
+    
 }
