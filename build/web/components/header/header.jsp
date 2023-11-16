@@ -4,7 +4,7 @@
 <div id='header'>
     <div>
         <p class="textHeader">BootstrapJavaBank</p>
-        ${param.logout ? '<a></a>' : '<a href=forward?href=/pages/login/index.jsp class="textHeader" >Logout</a>'}  
+        ${param.logout ? '<a></a>' : '<a href=login class="textHeader" >Logout</a>'}  
     </div>
     <h1>${param.title}</h1>
 </div>

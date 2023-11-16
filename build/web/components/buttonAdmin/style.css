@@ -1,33 +1,38 @@
-.containerButtonUser {
+#containerCardAdmin {
     width: 350px;
     height: 190px;
     border: #6C757D 1px solid;
     border-radius: 12px;
-    background-color: #7749F8;
 }
 
-.containerButtonUser a {
+#containerCardAdmin a {
     text-decoration: none;
-    color: #FFFFFF;
-    font-size: 16px;
 }
 
-.titleContainerButtonUser{
+#titleContainerCardAdmin{
+    background-color: #F8F9FA;
     padding: 16px 24px;
     border-radius: 12px 12px 0px 0px;
 }
 
-.textContainerButtonUser{
+#textContainerCardAdmin{
     padding: 24px;
 }
 
-.titleContainerButtonUser>h1{
+#titleContainerCardAdmin>h1{
     font-size: 20px;
     font-weight: 700;
+    color: #212529;
 }
 
-.textContainerButtonUser>h2{
+#textContainerCardAdmin>h2{
     font-size: 20px;
     font-weight: 700;
+    color: #6C757D;
     margin-bottom: 12px;
+}
+
+#textContainerCardAdmin>p{
+    font-size: 16px;
+    color: #6C757D;   
 }
