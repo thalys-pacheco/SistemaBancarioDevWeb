@@ -1,9 +1,9 @@
-package models;
+package entidade;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class UsuarioModel {    
+public class UsuarioEntidade {    
     private final int id;
     private final String nome;
     private final String tipo;
@@ -11,7 +11,7 @@ public class UsuarioModel {
     private final String cpf;
     private final String email;
     
-    public UsuarioModel(int id, String nome, String tipo,String cpf,String email){
+    public UsuarioEntidade(int id, String nome, String tipo,String cpf,String email){
         this.id = id;
         this.nome = nome;
         this.tipo = tipo;

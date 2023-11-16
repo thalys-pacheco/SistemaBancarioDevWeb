@@ -1,34 +1,28 @@
-package models;
+package entidade;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class UsuarioModel {    
+public class TransacaoEntidade {    
     private final int id;
-    private final String nome;
-    private final String tipo;
-    private final String senha;
-    private final String cpf;
-    private final String email;
+    private final int idEmissor;
+    private final int idDestinatario;
+    private final double valor;
     
-    public UsuarioModel(int id, String nome, String tipo,String cpf,String email){
+    public TransacaoEntidade(int id, int idEmissor, int idDestinatario, double valor){
         this.id = id;
-        this.nome = nome;
-        this.tipo = tipo;
-        this.senha = "123";
-        this.cpf = cpf;
-        this.email = email;
+        this.idEmissor = idEmissor;
+        this.idDestinatario = idDestinatario;
+        this.valor = valor;
     }
     
-    public Map<String, Object> getDadosUsuario(){
+    public Map<String, Object> getDadosTransacao(){
         Map<String, Object> dados = new HashMap();
         
         dados.put("id", id);
-        dados.put("nome", nome);
-        dados.put("tipo", tipo);
-        dados.put("senha", senha);
-        dados.put("cpf", cpf);
-        dados.put("email", email);
+        dados.put("idDestinatario", idDestinatario);
+        dados.put("idEmissor", idEmissor);
+        dados.put("valor", valor);
         
         return(dados);
     }

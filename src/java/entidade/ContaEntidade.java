@@ -1,15 +1,15 @@
-package models;
+package entidade;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class ContaModel {    
+public class ContaEntidade {    
     private final int id;
     private final int idUsuario;
     private final String tipo;
-    private final double  saldo;
+    private double  saldo;
     
-    public ContaModel(int id, int idUsuario,String tipo){
+    public ContaEntidade(int id, int idUsuario,String tipo){
         this.id = id;
         this.idUsuario = idUsuario;
         this.tipo = tipo;
@@ -25,5 +25,13 @@ public class ContaModel {
         dados.put("saldo", saldo);
         
         return(dados);
+    }
+    
+    public void deposito(double valor){
+        saldo = saldo + valor;
+    }
+    
+    public void saque (double valor){
+        saldo = saldo - valor;
     }
 }
