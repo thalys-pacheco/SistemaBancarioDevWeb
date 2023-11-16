@@ -1,35 +1,35 @@
 package storage;
 
 import java.util.ArrayList;
-import models.ContaModel;
+import entidade.TransacaoEntidade;
 import java.util.List;
 import java.util.Map;
 
-public class ContaStorage {    
-    private final List<ContaModel> listaContas;
+public class TransacaoStorage {    
+    private final List<TransacaoEntidade> listaTransacao;
     
-    public ContaStorage(){
-        this.listaContas = new ArrayList<>();
+    public TransacaoStorage(){
+        this.listaTransacao = new ArrayList<>();
     }
     
-    public void addConta(ContaModel conta){
-        listaContas.add(conta);
+    public void addTransacao(TransacaoEntidade conta){
+        listaTransacao.add(conta);
     }
     
     public int getTamanho(){
-        return listaContas.size();
+        return listaTransacao.size();
     }
     
-    public List<ContaModel> getContas(int idUsuario){
-        List<ContaModel> listaContasUsuario = new ArrayList<>();
+    public List<TransacaoEntidade> getTransacoes(int idConta){
+        List<TransacaoEntidade> listaTransacoesConta = new ArrayList<>();
         
-        for (ContaModel conta : listaContas) {
-            Map<String, Object> dados = conta.getDadosConta();
-            if(idUsuario == (int) dados.get("idUsuario")){
-                listaContasUsuario.add(conta);
+        for (TransacaoEntidade transacao : listaTransacao) {
+            Map<String, Object> dados = transacao.getDadosTransacao();
+            if(idConta == (int) dados.get("idEmissor") || idConta == (int) dados.get("idDestinatario")){
+                listaTransacoesConta.add(transacao);
             }
         }
         
-        return(listaContasUsuario);
+        return(listaTransacoesConta);
     }
 }

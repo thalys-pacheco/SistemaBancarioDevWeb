@@ -1,18 +1,18 @@
 package storage;
 
-import models.UsuarioModel;
+import entidade.UsuarioEntidade;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 public class UsuarioStorage {    
-    private final List<UsuarioModel> listaUsuarios;
+    private final List<UsuarioEntidade> listaUsuarios;
     
     public UsuarioStorage(){
         this.listaUsuarios = new ArrayList<>();
     }
     
-    public void addUsuario(UsuarioModel usuario){
+    public void addUsuario(UsuarioEntidade usuario){
         listaUsuarios.add(usuario);
     }
     
@@ -20,9 +20,9 @@ public class UsuarioStorage {
         return listaUsuarios.size();
     }
     
-    public UsuarioModel getUsuario(String cpf){
+    public UsuarioEntidade getUsuario(String cpf){
         
-        for (UsuarioModel usuario : listaUsuarios) {
+        for (UsuarioEntidade usuario : listaUsuarios) {
             Map<String, Object> dados = usuario.getDadosUsuario();
             if(cpf.equals(dados.get("cpf"))){
                 return(usuario);
