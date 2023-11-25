@@ -9,9 +9,15 @@ public class UsuarioDAO implements DAO<UsuarioEntidade>{
     
     @Override
     public UsuarioEntidade get(int id) {
+        
+        UsuarioEntidade usuario;
         Conexao conexao = new Conexao();
         try{
-            PreparedStatement sql = conexao.getConexao().prepareStatement("SELECT * FROM Usuarios WHERE ID = ?");
+            PreparedStatement sql = conexao.getConexao().prepareStatement("INSERT INTO usuarios (nome, tipo, senha, cpf, email)" +
+            "VALUES(?, ?, ?, ?, ?) ");
+            
+            
+            sql.setString(1, usuario);
             sql.setInt(1, id);
             ResultSet resultado = sql.executeQuery();
             

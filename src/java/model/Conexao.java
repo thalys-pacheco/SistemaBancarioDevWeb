@@ -10,7 +10,7 @@ public class Conexao {
     public Conexao(){
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conexao = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbjava", "root", "");
+            conexao = DriverManager.getConnection("jdbc:mysql://localhost:3306/BootstrapJavaBank", "root", "admin");
         } catch (SQLException e){
             throw new RuntimeException("Não foi possivel efetuar uma conexao com o BD!");
         } catch (ClassNotFoundException e){
