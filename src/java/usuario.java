@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.UsuarioDAO;
 
 @WebServlet(urlPatterns = {"/usuario"})
 public class usuario extends HttpServlet {
@@ -25,8 +26,9 @@ public class usuario extends HttpServlet {
             rd.forward(request, response);
         }else{
             int id = UsuarioProvider.getTamanho();
-            UsuarioEntidade usuario = new UsuarioEntidade(id,nome,tipo, cpf,email);
-            UsuarioProvider.addUsuario(usuario);
+            UsuarioEntidade usuario = new UsuarioEntidade(nome,tipo, cpf,email);
+            UsuarioDAO usuarioDAO = new UsuarioDAO();
+            usuarioDAO.insert(usuario);
             RequestDispatcher rd = request.getRequestDispatcher("/pages/admin/index.jsp");
             rd.forward(request, response);
         }

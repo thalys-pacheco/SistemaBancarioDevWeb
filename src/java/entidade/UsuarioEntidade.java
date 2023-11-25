@@ -11,14 +11,16 @@ public class UsuarioEntidade {
     private String cpf;
     private String email;
     
-    public UsuarioEntidade(int id, String nome, String tipo,String cpf,String email){
-        this.id = id;
+    
+    public UsuarioEntidade( String nome, String tipo,String cpf,String email){
+        
         this.nome = nome;
         this.tipo = tipo;
         this.senha = "123";
         this.cpf = cpf;
         this.email = email;
     }
+    
     
     public Map<String, Object> getDadosUsuario(){
         Map<String, Object> dados = new HashMap();
