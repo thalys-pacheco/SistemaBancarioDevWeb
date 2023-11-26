@@ -1,5 +1,6 @@
 package entidade;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -8,6 +9,7 @@ public class TransacaoEntidade {
     private int idEmissor;
     private int idDestinatario;
     private double valor;
+    private Date dataTransacao;
     
     public TransacaoEntidade(int idEmissor, int idDestinatario, double valor){
         this.idEmissor = idEmissor;
@@ -80,6 +82,20 @@ public class TransacaoEntidade {
      */
     public void setValor(double valor) {
         this.valor = valor;
+    }
+
+    /**
+     * @return the dataTransacao
+     */
+    public Date getDataTransacao() {
+        return dataTransacao;
+    }
+
+    /**
+     * @param dataTransacao the dataTransacao to set
+     */
+    public void setDataTransacao(Date dataTransacao) {
+        this.dataTransacao = dataTransacao;
     }
     
     

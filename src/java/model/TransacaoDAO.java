@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
@@ -91,10 +92,12 @@ public class TransacaoDAO implements DAO<TransacaoEntidade>{
                     int idEmissor = (resultado.getInt("IDEMISSOR"));
                     int idDestinatario = (resultado.getInt("IDDESTINATARIO"));
                     double valor = (resultado.getDouble("VALOR"));
+                    Date dataTransacao = (resultado.getDate("DATATRANSACAO"));
                   
                     
                     TransacaoEntidade transacoes = new TransacaoEntidade(idEmissor, idDestinatario, valor);
                     transacoes.setId(id);
+                    transacoes.setDataTransacao(dataTransacao);
                    
                     
                     minhasTransacoes.add(transacoes);
@@ -108,14 +111,14 @@ public class TransacaoDAO implements DAO<TransacaoEntidade>{
         return minhasTransacoes;
     }
     
-        public ArrayList<TransacaoEntidade> getTransacoesByUser(int idUsuario) {
+        public ArrayList<TransacaoEntidade> getTransacoesByConta(int idConta) {
         ArrayList<TransacaoEntidade> minhasTransacoes = new ArrayList();
         Conexao conexao = new Conexao();
         
         try {
             PreparedStatement sql = conexao.getConexao().prepareStatement("SELECT * FROM transacoes where idEmissor = ? || idDestinatario = ? Order By id");
-            sql.setInt(1, idUsuario);
-            sql.setInt(2, idUsuario);
+            sql.setInt(1, idConta);
+            sql.setInt(2, idConta);
             ResultSet resultado = sql.executeQuery();
             
             if (resultado != null) {
@@ -125,10 +128,12 @@ public class TransacaoDAO implements DAO<TransacaoEntidade>{
                     int idEmissor = (resultado.getInt("IDEMISSOR"));
                     int idDestinatario = (resultado.getInt("IDDESTINATARIO"));
                     double valor = (resultado.getDouble("VALOR"));
+                    Date dataTransacao = (resultado.getDate("DATATRANSACAO"));
                   
                     
                     TransacaoEntidade transacoes = new TransacaoEntidade(idEmissor, idDestinatario, valor);
                     transacoes.setId(id);
+                    transacoes.setDataTransacao(dataTransacao);
                    
                     
                     minhasTransacoes.add(transacoes);
@@ -163,10 +168,12 @@ public class TransacaoDAO implements DAO<TransacaoEntidade>{
                     int idEmissor = (resultado.getInt("IDEMISSOR"));
                     int idDestinatario = (resultado.getInt("IDDESTINATARIO"));
                     double valor = (resultado.getDouble("VALOR"));
+                    Date dataTransacao = (resultado.getDate("DATATRANSACAO"));
                   
                     
                     TransacaoEntidade transacoes = new TransacaoEntidade(idEmissor, idDestinatario, valor);
                     transacoes.setId(id);
+                    transacoes.setDataTransacao(dataTransacao);
                    
                    
                     

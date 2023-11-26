@@ -1,5 +1,4 @@
 import entidade.ContaEntidade;
-import provider.TransacaoProvider;
 import entidade.TransacaoEntidade;
 
 import java.io.IOException;
@@ -23,7 +22,8 @@ public class transacao extends HttpServlet {
         
         int idConta = Integer.parseInt(request.getParameter("idConta"));
         
-        List<TransacaoEntidade> transacoes = TransacaoProvider.getTransacoes( idConta);
+        TransacaoDAO transacaoDAO = new TransacaoDAO();
+        List<TransacaoEntidade> transacoes = transacaoDAO.getTransacoesByConta(idConta);
         request.setAttribute("transacoes", transacoes);
         
         RequestDispatcher rd = request.getRequestDispatcher("/pages/login/index.jsp");
