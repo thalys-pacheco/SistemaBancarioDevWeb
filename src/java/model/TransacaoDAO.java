@@ -5,6 +5,7 @@
 package model;
 
 import entidade.ContaEntidade;
+import entidade.TransacaoEntidade;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,20 +15,20 @@ import java.util.ArrayList;
  *
  * @author Rodrigo
  */
-public class ContaDAO implements DAO<ContaEntidade>{
-    
+public class TransacaoDAO implements DAO<TransacaoEntidade>{
+     
     //inserindo conta
     @Override
-    public void  insert(ContaEntidade conta){
+    public void  insert(TransacaoEntidade transacoes){
         Conexao conexao = new Conexao();
         try{
-            PreparedStatement sql = conexao.getConexao().prepareStatement("INSERT INTO contas (idUsuario, tipo, saldo) VALUES(?, ?, ?)");
+            PreparedStatement sql = conexao.getConexao().prepareStatement("INSERT INTO transacoes (idEmissor, idDestinatario, valor) VALUES(?, ?, ?)");
             
             
             
-            sql.setInt(1, conta.getIdUsuario());
-            sql.setString(2, conta.getTipo());
-            sql.setDouble(3, conta.getSaldo());
+            sql.setInt(1, transacoes.getIdEmissor());
+            sql.setInt(2, transacoes.getIdDestinatario());
+            sql.setDouble(3, transacoes.getValor());
             sql.executeUpdate();
             
         }catch (SQLException e) {
@@ -43,7 +44,7 @@ public class ContaDAO implements DAO<ContaEntidade>{
     public void delete(int id) {
         Conexao conexao = new Conexao();
         try {
-            PreparedStatement sql = conexao.getConexao().prepareStatement("DELETE FROM contas WHERE ID = ? ");
+            PreparedStatement sql = conexao.getConexao().prepareStatement("DELETE FROM transacoes WHERE ID = ? ");
             sql.setInt(1, id);
             sql.executeUpdate();
 
@@ -55,15 +56,14 @@ public class ContaDAO implements DAO<ContaEntidade>{
     }
     
     @Override
-    public void update(ContaEntidade conta)  {
+    public void update(TransacaoEntidade transacoes)  {
         Conexao conexao = new Conexao();
         
         try {
-            PreparedStatement sql = conexao.getConexao().prepareStatement("UPDATE contas SET idUsuario = ?, tipo = ?, saldo = ?  WHERE ID = ? ");
-            sql.setInt(1, conta.getIdUsuario());
-            sql.setString(2, conta.getTipo());
-            sql.setDouble(3, conta.getSaldo());
-            sql.setInt(4, conta.getId());
+            PreparedStatement sql = conexao.getConexao().prepareStatement("UPDATE contas SET idEmissor = ?, idDestinatario = ?, valor = ?  WHERE ID = ? ");
+            sql.setInt(1, transacoes.getIdEmissor());
+            sql.setInt(2, transacoes.getIdDestinatario());
+            sql.setDouble(3, transacoes.getValor());
             sql.executeUpdate();
 
         } catch (SQLException e) {
@@ -74,12 +74,12 @@ public class ContaDAO implements DAO<ContaEntidade>{
     }
     
     @Override
-    public ArrayList<ContaEntidade> getAll() {
-        ArrayList<ContaEntidade> minhasContas = new ArrayList();
+    public ArrayList<TransacaoEntidade> getAll() {
+        ArrayList<TransacaoEntidade> minhasTransacoes = new ArrayList();
         Conexao conexao = new Conexao();
         
         try {
-            String selectSQL = "SELECT * FROM contas order by id";
+            String selectSQL = "SELECT * FROM transacoes order by id";
             PreparedStatement preparedStatement =  conexao.getConexao().prepareStatement(selectSQL);
             ResultSet resultado = preparedStatement.executeQuery();
             
@@ -88,16 +88,16 @@ public class ContaDAO implements DAO<ContaEntidade>{
                     
                     int id = (resultado.getInt("ID"));
                     
-                    int idUsuario = (resultado.getInt("IDUSUARIO"));
-                    String tipo = (resultado.getString("TIPO"));
-                    double saldo = (resultado.getDouble("SALDO"));
+                    int idEmissor = (resultado.getInt("IDEMISSOR"));
+                    int idDestinatario = (resultado.getInt("IDDESTINATARIO"));
+                    double valor = (resultado.getDouble("VALOR"));
                   
                     
-                    ContaEntidade conta = new ContaEntidade(idUsuario, tipo, saldo);
-                    conta.setId(id);
+                    TransacaoEntidade transacoes = new TransacaoEntidade(idEmissor, idDestinatario, valor);
+                    transacoes.setId(id);
                    
                     
-                    minhasContas.add(conta);
+                    minhasTransacoes.add(transacoes);
                 }
             }
         } catch (SQLException e) {
@@ -105,31 +105,33 @@ public class ContaDAO implements DAO<ContaEntidade>{
         } finally {
             conexao.closeConexao();
         }
-        return minhasContas;
+        return minhasTransacoes;
     }
     
-        public ArrayList<ContaEntidade> getContasByUser(int idUsuario) {
-        ArrayList<ContaEntidade> minhasContas = new ArrayList();
+        public ArrayList<TransacaoEntidade> getTransacoesByUser(int idUsuario) {
+        ArrayList<TransacaoEntidade> minhasTransacoes = new ArrayList();
         Conexao conexao = new Conexao();
         
         try {
-            PreparedStatement sql = conexao.getConexao().prepareStatement("SELECT * FROM contas where idUsuario = ? Order By id");
+            PreparedStatement sql = conexao.getConexao().prepareStatement("SELECT * FROM transacoes where idEmissor = ? || idDestinatario = ? Order By id");
             sql.setInt(1, idUsuario);
+            sql.setInt(2, idUsuario);
             ResultSet resultado = sql.executeQuery();
             
             if (resultado != null) {
                 while (resultado.next()) {
                     
                     int id = (resultado.getInt("ID"));
-                    String tipo = (resultado.getString("TIPO"));
-                    double saldo = (resultado.getDouble("SALDO"));
+                    int idEmissor = (resultado.getInt("IDEMISSOR"));
+                    int idDestinatario = (resultado.getInt("IDDESTINATARIO"));
+                    double valor = (resultado.getDouble("VALOR"));
                   
                     
-                    ContaEntidade conta = new ContaEntidade(idUsuario, tipo, saldo);
-                    conta.setId(id);
+                    TransacaoEntidade transacoes = new TransacaoEntidade(idEmissor, idDestinatario, valor);
+                    transacoes.setId(id);
                    
                     
-                    minhasContas.add(conta);
+                    minhasTransacoes.add(transacoes);
                 }
             }
         } catch (SQLException e) {
@@ -137,17 +139,17 @@ public class ContaDAO implements DAO<ContaEntidade>{
         } finally {
             conexao.closeConexao();
         }
-        return minhasContas;
+        return minhasTransacoes;
     }
     
 
     
     @Override
-    public ContaEntidade get(int id) {
+    public TransacaoEntidade get(int id) {
         Conexao conexao = new Conexao();
         
         try{
-            PreparedStatement sql = conexao.getConexao().prepareStatement("SELECT * FROM contas WHERE ID = ?");
+            PreparedStatement sql = conexao.getConexao().prepareStatement("SELECT * FROM transacoes WHERE ID = ?");
             sql.setInt(1, id);
             ResultSet resultado = sql.executeQuery();
             
@@ -156,18 +158,20 @@ public class ContaDAO implements DAO<ContaEntidade>{
                 while(resultado.next()){
                     
 
+                             
                     
-                    int idUsuario = (resultado.getInt("IDUSUARIO"));
-                    String tipo = (resultado.getString("TIPO"));
-                    double saldo = (resultado.getDouble("SALDO"));
+                    int idEmissor = (resultado.getInt("IDEMISSOR"));
+                    int idDestinatario = (resultado.getInt("IDDESTINATARIO"));
+                    double valor = (resultado.getDouble("VALOR"));
                   
                     
-                    ContaEntidade conta = new ContaEntidade(idUsuario, tipo, saldo);
-                    conta.setId(id);
+                    TransacaoEntidade transacoes = new TransacaoEntidade(idEmissor, idDestinatario, valor);
+                    transacoes.setId(id);
+                   
                    
                     
                     
-                    return conta;
+                    return transacoes;
                 }
             }
             return null;
