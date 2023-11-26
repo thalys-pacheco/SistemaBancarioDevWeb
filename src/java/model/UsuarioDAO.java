@@ -10,6 +10,7 @@ public class UsuarioDAO implements DAO<UsuarioEntidade>{
     
     
     //inserindo usuario
+    @Override
     public void  insert(UsuarioEntidade usuario){
         Conexao conexao = new Conexao();
         try{
@@ -36,7 +37,6 @@ public class UsuarioDAO implements DAO<UsuarioEntidade>{
     @Override
     public void delete(int id) {
         Conexao conexao = new Conexao();
-       // UsuarioEntidade usuario = new UsuarioEntidade();
         try {
             PreparedStatement sql = conexao.getConexao().prepareStatement("DELETE FROM usuarios WHERE ID = ? ");
             sql.setInt(1, id);
@@ -49,6 +49,7 @@ public class UsuarioDAO implements DAO<UsuarioEntidade>{
         }
     }
     
+    @Override
     public void update(UsuarioEntidade usuario)  {
         Conexao conexao = new Conexao();
         
@@ -88,8 +89,6 @@ public class UsuarioDAO implements DAO<UsuarioEntidade>{
                     int id = (resultado.getInt("ID"));
                     String nome = (resultado.getString("NOME"));
                     String tipo = (resultado.getString("TIPO"));
-                    //String senha = (resultado.getString("SENHA"));
-                    //String cpf = (resultado.getString("CPF"));
                     String email = (resultado.getString("EMAIL"));
 
                     UsuarioEntidade usuario = new UsuarioEntidade( nome, tipo, cpf, email);
@@ -124,8 +123,6 @@ public class UsuarioDAO implements DAO<UsuarioEntidade>{
                     int id = (resultado.getInt("ID"));
                     String nome = (resultado.getString("NOME"));
                     String tipo = (resultado.getString("TIPO"));
-                    //String senha = (resultado.getString("SENHA"));
-                    //String cpf = (resultado.getString("CPF"));
                     String email = (resultado.getString("EMAIL"));
                        
                     UsuarioEntidade usuario = new UsuarioEntidade( nome, tipo, cpf, email);
@@ -144,6 +141,7 @@ public class UsuarioDAO implements DAO<UsuarioEntidade>{
     }
     
     
+    @Override
     public ArrayList<UsuarioEntidade> getAll() {
         ArrayList<UsuarioEntidade> meusUsuarios = new ArrayList();
         Conexao conexao = new Conexao();
@@ -158,7 +156,6 @@ public class UsuarioDAO implements DAO<UsuarioEntidade>{
                     int id = Integer.parseInt(resultado.getString("id"));
                     String nome = (resultado.getString("NOME"));
                     String tipo = (resultado.getString("TIPO"));
-                    //String senha = (resultado.getString("SENHA"));
                     String cpf = (resultado.getString("CPF"));
                     String email = (resultado.getString("EMAIL"));
                     
@@ -197,7 +194,6 @@ public class UsuarioDAO implements DAO<UsuarioEntidade>{
                     
                     String nome = (resultado.getString("NOME"));
                     String tipo = (resultado.getString("TIPO"));
-                    String senha = (resultado.getString("SENHA"));
                     String cpf = (resultado.getString("CPF"));
                     String email = (resultado.getString("EMAIL"));
                     UsuarioEntidade usuario = new UsuarioEntidade( nome, tipo, cpf, email);

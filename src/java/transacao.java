@@ -1,6 +1,5 @@
 import provider.TransacaoProvider;
 import entidade.TransacaoEntidade;
-import provider.ContaProvider;
 
 import java.io.IOException;
 import java.util.List;

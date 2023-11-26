@@ -1,5 +1,7 @@
 import entidade.UsuarioEntidade;
-
+import model.UsuarioDAO;
+import entidade.ContaEntidade;
+import model.ContaDAO;
 
 import java.io.IOException;
 
@@ -9,10 +11,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import entidade.ContaEntidade;
-import model.ContaDAO;
-import model.UsuarioDAO;
-
 @WebServlet(urlPatterns = {"/conta"})
 public class conta extends HttpServlet {    
     @Override

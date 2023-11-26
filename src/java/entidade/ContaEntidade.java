@@ -15,17 +15,6 @@ public class ContaEntidade {
         this.saldo = saldo;
     }
     
-    public Map<String, Object> getDadosConta(){
-        Map<String, Object> dados = new HashMap();
-        
-        dados.put("id", getId());
-        dados.put("idUsuario", getIdUsuario());
-        dados.put("tipo", getTipo());
-        dados.put("saldo", getSaldo());
-        
-        return(dados);
-    }
-    
     public void deposito(double valor){
         setSaldo(getSaldo() + valor);
     }

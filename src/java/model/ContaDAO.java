@@ -17,6 +17,7 @@ import java.util.ArrayList;
 public class ContaDAO implements DAO<ContaEntidade>{
     
     //inserindo conta
+    @Override
     public void  insert(ContaEntidade conta){
         Conexao conexao = new Conexao();
         try{
@@ -53,6 +54,7 @@ public class ContaDAO implements DAO<ContaEntidade>{
         }
     }
     
+    @Override
     public void update(ContaEntidade conta)  {
         Conexao conexao = new Conexao();
         
@@ -70,16 +72,13 @@ public class ContaDAO implements DAO<ContaEntidade>{
         }
     }
     
- 
-    
-    
-    
+    @Override
     public ArrayList<ContaEntidade> getAll() {
         ArrayList<ContaEntidade> minhasContas = new ArrayList();
         Conexao conexao = new Conexao();
         
         try {
-            String selectSQL = "SELECT * FROM contas order by nome";
+            String selectSQL = "SELECT * FROM contas order by id";
             PreparedStatement preparedStatement =  conexao.getConexao().prepareStatement(selectSQL);
             ResultSet resultado = preparedStatement.executeQuery();
             
@@ -113,7 +112,7 @@ public class ContaDAO implements DAO<ContaEntidade>{
         Conexao conexao = new Conexao();
         
         try {
-            PreparedStatement sql = conexao.getConexao().prepareStatement("SELECT * FROM contas where = idUsuario ? Order By id");
+            PreparedStatement sql = conexao.getConexao().prepareStatement("SELECT * FROM contas where idUsuario = ? Order By id");
             sql.setInt(1, idUsuario);
             ResultSet resultado = sql.executeQuery();
             
