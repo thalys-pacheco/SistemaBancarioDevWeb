@@ -64,7 +64,7 @@ public class ContaDAO implements DAO<ContaEntidade>{
             sql.executeUpdate();
 
         } catch (SQLException e) {
-            throw new RuntimeException("Query de update (alterar) incorreta");
+            throw new RuntimeException("Query de update (alterar) incorreta "  + e.getMessage());
         } finally {
             conexao.closeConexao();
         }
@@ -101,7 +101,7 @@ public class ContaDAO implements DAO<ContaEntidade>{
                 }
             }
         } catch (SQLException e) {
-            throw new RuntimeException("Query de select (ListaDeUsuarios) incorreta");
+            throw new RuntimeException("Query de select (ListaDeUsuarios) incorreta "  + e.getMessage());
         } finally {
             conexao.closeConexao();
         }
@@ -133,7 +133,7 @@ public class ContaDAO implements DAO<ContaEntidade>{
                 }
             }
         } catch (SQLException e) {
-            throw new RuntimeException("Query de select (ListaDeUsuarios) incorreta");
+            throw new RuntimeException("Query de select (ListaDeUsuarios) incorreta "  + e.getMessage());
         } finally {
             conexao.closeConexao();
         }
@@ -173,7 +173,7 @@ public class ContaDAO implements DAO<ContaEntidade>{
             return null;
             
         } catch (SQLException e) {
-            throw new RuntimeException("Query de select (get usuario) incorreto");
+            throw new RuntimeException("Query de select (get usuario) incorreto "  + e.getMessage());
         } finally{
             conexao.closeConexao();
         }

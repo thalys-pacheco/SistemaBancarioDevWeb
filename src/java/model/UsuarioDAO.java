@@ -26,7 +26,7 @@ public class UsuarioDAO implements DAO<UsuarioEntidade>{
             
         }catch (SQLException e) {
             
-            throw new RuntimeException("Query (inserir) incorreto");
+            throw new RuntimeException("Query (inserir) incorreto " + e.getMessage());
             
         }finally{
             conexao.closeConexao();
@@ -43,7 +43,7 @@ public class UsuarioDAO implements DAO<UsuarioEntidade>{
             sql.executeUpdate();
 
         } catch (SQLException e) {
-            throw new RuntimeException("Query de delete (excluir) incorreta");
+            throw new RuntimeException("Query de delete (excluir) incorreta "  + e.getMessage());
         } finally {
             conexao.closeConexao();
         }
@@ -63,7 +63,7 @@ public class UsuarioDAO implements DAO<UsuarioEntidade>{
             sql.executeUpdate();
 
         } catch (SQLException e) {
-            throw new RuntimeException("Query de update (alterar) incorreta");
+            throw new RuntimeException("Query de update (alterar) incorreta: "  + e.getMessage());
         } finally {
             conexao.closeConexao();
         }
@@ -85,7 +85,7 @@ public class UsuarioDAO implements DAO<UsuarioEntidade>{
                 while(resultado.next()){
                     
                    
-                    
+                    int id = (resultado.getInt("ID"));
                     String nome = (resultado.getString("NOME"));
                     String tipo = (resultado.getString("TIPO"));
                     //String senha = (resultado.getString("SENHA"));
@@ -93,7 +93,7 @@ public class UsuarioDAO implements DAO<UsuarioEntidade>{
                     String email = (resultado.getString("EMAIL"));
 
                     UsuarioEntidade usuario = new UsuarioEntidade( nome, tipo, cpf, email);
-                    
+                    usuario.setId(id);
                     
                     return usuario;
                 }
@@ -101,7 +101,7 @@ public class UsuarioDAO implements DAO<UsuarioEntidade>{
             return null;
             
         } catch (SQLException e) {
-            throw new RuntimeException("Query (Logar) incorreto");
+            throw new RuntimeException("Query (Logar) incorreto "  + e.getMessage());
         } finally{
             conexao.closeConexao();
         }
@@ -111,7 +111,7 @@ public class UsuarioDAO implements DAO<UsuarioEntidade>{
         Conexao conexao = new Conexao();
         
         try{
-            PreparedStatement sql = conexao.getConexao().prepareStatement("SELECT * FROM Usuarios WHERE cpf = ?");
+            PreparedStatement sql = conexao.getConexao().prepareStatement("SELECT * FROM usuarios WHERE cpf = ?");
              
             sql.setString(1, cpf);
             ResultSet resultado = sql.executeQuery();
@@ -121,15 +121,15 @@ public class UsuarioDAO implements DAO<UsuarioEntidade>{
                 while(resultado.next()){
                     
                    
-                    
+                    int id = (resultado.getInt("ID"));
                     String nome = (resultado.getString("NOME"));
                     String tipo = (resultado.getString("TIPO"));
                     //String senha = (resultado.getString("SENHA"));
                     //String cpf = (resultado.getString("CPF"));
                     String email = (resultado.getString("EMAIL"));
-
+                       
                     UsuarioEntidade usuario = new UsuarioEntidade( nome, tipo, cpf, email);
-                    
+                    usuario.setId(id);
                     
                     return usuario;
                 }
@@ -137,7 +137,7 @@ public class UsuarioDAO implements DAO<UsuarioEntidade>{
             return null;
             
         } catch (SQLException e) {
-            throw new RuntimeException("Query (Logar) incorreto");
+            throw new RuntimeException("Query (Logar) incorreto "  + e.getMessage());
         } finally{
             conexao.closeConexao();
         }
@@ -171,7 +171,7 @@ public class UsuarioDAO implements DAO<UsuarioEntidade>{
                 }
             }
         } catch (SQLException e) {
-            throw new RuntimeException("Query de select (ListaDeUsuarios) incorreta");
+            throw new RuntimeException("Query de select (ListaDeUsuarios) incorreta "  + e.getMessage());
         } finally {
             conexao.closeConexao();
         }
@@ -211,7 +211,7 @@ public class UsuarioDAO implements DAO<UsuarioEntidade>{
             return null;
             
         } catch (SQLException e) {
-            throw new RuntimeException("Query de select (get usuario) incorreto");
+            throw new RuntimeException("Query de select (get usuario) incorreto "  + e.getMessage());
         } finally{
             conexao.closeConexao();
         }
