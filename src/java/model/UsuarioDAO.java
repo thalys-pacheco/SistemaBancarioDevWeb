@@ -107,6 +107,42 @@ public class UsuarioDAO implements DAO<UsuarioEntidade>{
         }
     }
     
+        public UsuarioEntidade getByCpf(String cpf) {
+        Conexao conexao = new Conexao();
+        
+        try{
+            PreparedStatement sql = conexao.getConexao().prepareStatement("SELECT * FROM Usuarios WHERE cpf = ?");
+             
+            sql.setString(1, cpf);
+            ResultSet resultado = sql.executeQuery();
+            
+            
+            if(resultado!=null){
+                while(resultado.next()){
+                    
+                   
+                    
+                    String nome = (resultado.getString("NOME"));
+                    String tipo = (resultado.getString("TIPO"));
+                    //String senha = (resultado.getString("SENHA"));
+                    //String cpf = (resultado.getString("CPF"));
+                    String email = (resultado.getString("EMAIL"));
+
+                    UsuarioEntidade usuario = new UsuarioEntidade( nome, tipo, cpf, email);
+                    
+                    
+                    return usuario;
+                }
+            }
+            return null;
+            
+        } catch (SQLException e) {
+            throw new RuntimeException("Query (Logar) incorreto");
+        } finally{
+            conexao.closeConexao();
+        }
+    }
+    
     
     public ArrayList<UsuarioEntidade> getAll() {
         ArrayList<UsuarioEntidade> meusUsuarios = new ArrayList();

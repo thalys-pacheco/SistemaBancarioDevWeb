@@ -1,5 +1,4 @@
 import entidade.UsuarioEntidade;
-import provider.UsuarioProvider;
 import entidade.ContaEntidade;
 import provider.ContaProvider;
 
@@ -13,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.ContaDAO;
 import model.UsuarioDAO;
 
 @WebServlet(urlPatterns = {"/login"})
@@ -45,16 +45,17 @@ public class login extends HttpServlet {
         }else{
             UsuarioEntidade usuario = usuarioDAO.logar(cpf, password);
             if(usuario!=null){
-                Map<String, Object> dados = usuario.getDadosUsuario();
                
                 HttpSession session = request.getSession();
                 session.setAttribute("usuario",usuario);
 
-                if("admin".equals(dados.get("tipo"))){
+                if("admin".equals(usuario.getTipo())){
                     RequestDispatcher rd = request.getRequestDispatcher("/pages/admin/index.jsp");
                     rd.forward(request, response);
+                    
                 }else{
-                    List<ContaEntidade> contas = ContaProvider.getContas((int) dados.get("id"));
+                    ContaDAO contaDAO = new ContaDAO();
+                    List<ContaEntidade> contas = contaDAO.getContasByUser(usuario.getId());
                     session.setAttribute("contas",contas);
 
                     RequestDispatcher rd = request.getRequestDispatcher("/pages/home/index.jsp");

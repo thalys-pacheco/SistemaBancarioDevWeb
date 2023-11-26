@@ -25,7 +25,6 @@ public class usuario extends HttpServlet {
             RequestDispatcher rd = request.getRequestDispatcher("/pages/cadUsuario/index.jsp");
             rd.forward(request, response);
         }else{
-            int id = UsuarioProvider.getTamanho();
             UsuarioEntidade usuario = new UsuarioEntidade(nome,tipo, cpf,email);
             UsuarioDAO usuarioDAO = new UsuarioDAO();
             usuarioDAO.insert(usuario);
