@@ -1,0 +1,22 @@
+.containerCardExtrato {
+    width: 80%;
+    border: #6C757D 1px solid;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+    padding: 20px;
+    justify-content:space-between;
+}
+
+.containerCardExtrato>h1{
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.containerCardExtrato>h2{
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
