@@ -24,10 +24,15 @@ public class transacao extends HttpServlet {
         
         TransacaoDAO transacaoDAO = new TransacaoDAO();
         List<TransacaoEntidade> transacoes = transacaoDAO.getTransacoesByConta(idConta);
-        request.setAttribute("transacoes", transacoes);
         
-        RequestDispatcher rd = request.getRequestDispatcher("/pages/login/index.jsp");
-        rd.forward(request, response);
+        if(!transacoes.isEmpty()){
+            request.setAttribute("transacoes", transacoes);  
+            RequestDispatcher rd = request.getRequestDispatcher("/pages/extrato/index.jsp");
+            rd.forward(request, response);
+        }else{
+            RequestDispatcher rd = request.getRequestDispatcher("/pages/home/index.jsp");
+            rd.forward(request, response);
+        }  
         
     }
 

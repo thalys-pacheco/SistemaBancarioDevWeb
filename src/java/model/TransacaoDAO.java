@@ -4,7 +4,6 @@
  */
 package model;
 
-import entidade.ContaEntidade;
 import entidade.TransacaoEntidade;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,10 +11,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 
-/**
- *
- * @author Rodrigo
- */
 public class TransacaoDAO implements DAO<TransacaoEntidade>{
      
     //inserindo conta
@@ -23,9 +18,7 @@ public class TransacaoDAO implements DAO<TransacaoEntidade>{
     public void  insert(TransacaoEntidade transacoes){
         Conexao conexao = new Conexao();
         try{
-            PreparedStatement sql = conexao.getConexao().prepareStatement("INSERT INTO transacoes (idEmissor, idDestinatario, valor) VALUES(?, ?, ?)");
-            
-            
+            PreparedStatement sql = conexao.getConexao().prepareStatement("INSERT INTO transacoes (idEmissor, idDestinatario, valor, dataTransacao) VALUES(?, ?, ?, NOW())");
             
             sql.setInt(1, transacoes.getIdEmissor());
             sql.setInt(2, transacoes.getIdDestinatario());
@@ -88,18 +81,15 @@ public class TransacaoDAO implements DAO<TransacaoEntidade>{
                 while (resultado.next()) {
                     
                     int id = (resultado.getInt("ID"));
-                    
                     int idEmissor = (resultado.getInt("IDEMISSOR"));
                     int idDestinatario = (resultado.getInt("IDDESTINATARIO"));
                     double valor = (resultado.getDouble("VALOR"));
                     Date dataTransacao = (resultado.getDate("DATATRANSACAO"));
-                  
                     
                     TransacaoEntidade transacoes = new TransacaoEntidade(idEmissor, idDestinatario, valor);
                     transacoes.setId(id);
                     transacoes.setDataTransacao(dataTransacao);
                    
-                    
                     minhasTransacoes.add(transacoes);
                 }
             }
@@ -129,13 +119,11 @@ public class TransacaoDAO implements DAO<TransacaoEntidade>{
                     int idDestinatario = (resultado.getInt("IDDESTINATARIO"));
                     double valor = (resultado.getDouble("VALOR"));
                     Date dataTransacao = (resultado.getDate("DATATRANSACAO"));
-                  
                     
                     TransacaoEntidade transacoes = new TransacaoEntidade(idEmissor, idDestinatario, valor);
                     transacoes.setId(id);
                     transacoes.setDataTransacao(dataTransacao);
                    
-                    
                     minhasTransacoes.add(transacoes);
                 }
             }
@@ -146,8 +134,6 @@ public class TransacaoDAO implements DAO<TransacaoEntidade>{
         }
         return minhasTransacoes;
     }
-    
-
     
     @Override
     public TransacaoEntidade get(int id) {
@@ -162,22 +148,15 @@ public class TransacaoDAO implements DAO<TransacaoEntidade>{
             if(resultado!=null){
                 while(resultado.next()){
                     
-
-                             
-                    
                     int idEmissor = (resultado.getInt("IDEMISSOR"));
                     int idDestinatario = (resultado.getInt("IDDESTINATARIO"));
                     double valor = (resultado.getDouble("VALOR"));
                     Date dataTransacao = (resultado.getDate("DATATRANSACAO"));
                   
-                    
                     TransacaoEntidade transacoes = new TransacaoEntidade(idEmissor, idDestinatario, valor);
                     transacoes.setId(id);
                     transacoes.setDataTransacao(dataTransacao);
                    
-                   
-                    
-                    
                     return transacoes;
                 }
             }
