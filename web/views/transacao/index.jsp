@@ -5,7 +5,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Sistema Bancario - Transacao</title>
         <link rel="stylesheet" type="text/css" href="theme/reset.css" media="screen" />
-        <link rel="stylesheet" type="text/css" href="pages/transacao/style.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="views/transacao/style.css" media="screen" />
     </head>
     <body>
         <jsp:include page="../../components/header/header.jsp">

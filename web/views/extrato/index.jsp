@@ -15,7 +15,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Sistema Bancario - Extrato</title>
         <link rel="stylesheet" type="text/css" href="theme/reset.css" media="screen" />
-        <link rel="stylesheet" type="text/css" href="pages/extrato/style.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="views/extrato/style.css" media="screen" />
     </head>
     <body>
         <%

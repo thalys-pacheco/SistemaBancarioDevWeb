@@ -19,7 +19,7 @@ public class conta extends HttpServlet {
         String cpf = request.getParameter("cpf");
         String tipo = request.getParameter("tipo");
         if(cpf.isEmpty() || tipo.isEmpty()){
-            RequestDispatcher rd = request.getRequestDispatcher("/pages/cadConta/index.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("/views/cadConta/index.jsp");
             rd.forward(request, response);
         }else{
             UsuarioDAO usuarioDAO = new UsuarioDAO();
@@ -33,14 +33,14 @@ public class conta extends HttpServlet {
                     ContaDAO contaDAO = new ContaDAO();
                     contaDAO.insert(conta);
                     
-                    RequestDispatcher rd = request.getRequestDispatcher("/pages/admin/index.jsp");
+                    RequestDispatcher rd = request.getRequestDispatcher("/views/admin/index.jsp");
                     rd.forward(request, response);
                 }else{
-                    RequestDispatcher rd = request.getRequestDispatcher("/pages/cadConta/index.jsp");
+                    RequestDispatcher rd = request.getRequestDispatcher("/views/cadConta/index.jsp");
                     rd.forward(request, response);
                 }
             }else{
-                RequestDispatcher rd = request.getRequestDispatcher("/pages/cadConta/index.jsp");
+                RequestDispatcher rd = request.getRequestDispatcher("/views/cadConta/index.jsp");
                 rd.forward(request, response);
             }  
         }

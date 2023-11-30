@@ -20,7 +20,7 @@ public class login extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
         request.getSession().invalidate();
-        RequestDispatcher rd = request.getRequestDispatcher("/pages/login/index.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/views/login/index.jsp");
         rd.forward(request, response);
     }
     
@@ -38,7 +38,7 @@ public class login extends HttpServlet {
         String password = request.getParameter("password");
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         if(cpf.isEmpty() || password.isEmpty()){
-            RequestDispatcher rd = request.getRequestDispatcher("/pages/login/index.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("/views/login/index.jsp");
             rd.forward(request, response);
         }else{
             UsuarioEntidade usuario = usuarioDAO.logar(cpf, password);
@@ -48,7 +48,7 @@ public class login extends HttpServlet {
                 session.setAttribute("usuario",usuario);
 
                 if("admin".equals(usuario.getTipo())){
-                    RequestDispatcher rd = request.getRequestDispatcher("/pages/admin/index.jsp");
+                    RequestDispatcher rd = request.getRequestDispatcher("/views/admin/index.jsp");
                     rd.forward(request, response);
                     
                 }else{
@@ -56,13 +56,13 @@ public class login extends HttpServlet {
                     List<ContaEntidade> contas = contaDAO.getContasByUser(usuario.getId());
                     session.setAttribute("contas",contas);
 
-                    RequestDispatcher rd = request.getRequestDispatcher("/pages/home/index.jsp");
+                    RequestDispatcher rd = request.getRequestDispatcher("/views/home/index.jsp");
                     rd.forward(request, response);
                     }
 
                 
             }else{
-                RequestDispatcher rd = request.getRequestDispatcher("/pages/login/index.jsp");
+                RequestDispatcher rd = request.getRequestDispatcher("/views/login/index.jsp");
                 rd.forward(request, response);
             }
         }

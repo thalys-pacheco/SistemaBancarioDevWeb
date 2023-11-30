@@ -21,13 +21,13 @@ public class usuario extends HttpServlet {
         String cpf = request.getParameter("cpf");
         String email = request.getParameter("email");
         if(cpf.isEmpty() || email.isEmpty() || nome.isEmpty()){
-            RequestDispatcher rd = request.getRequestDispatcher("/pages/cadUsuario/index.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("/views/cadUsuario/index.jsp");
             rd.forward(request, response);
         }else{
             UsuarioEntidade usuario = new UsuarioEntidade(nome,tipo, cpf,email);
             UsuarioDAO usuarioDAO = new UsuarioDAO();
             usuarioDAO.insert(usuario);
-            RequestDispatcher rd = request.getRequestDispatcher("/pages/admin/index.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("/views/admin/index.jsp");
             rd.forward(request, response);
         }
     }

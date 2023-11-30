@@ -27,10 +27,10 @@ public class transacao extends HttpServlet {
         
         if(!transacoes.isEmpty()){
             request.setAttribute("transacoes", transacoes);  
-            RequestDispatcher rd = request.getRequestDispatcher("/pages/extrato/index.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("/views/extrato/index.jsp");
             rd.forward(request, response);
         }else{
-            RequestDispatcher rd = request.getRequestDispatcher("/pages/home/index.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("/views/home/index.jsp");
             rd.forward(request, response);
         }  
         
@@ -64,7 +64,7 @@ public class transacao extends HttpServlet {
                 double novoSaldoSaque = contaSaque.getSaldo() - valor;
                 if(novoSaldoSaque < 0){
                     
-                    RequestDispatcher rd = request.getRequestDispatcher("/pages/transacao/index.jsp?tipo=Saque&idConta=" + idConta);
+                    RequestDispatcher rd = request.getRequestDispatcher("/views/transacao/index.jsp?tipo=Saque&idConta=" + idConta);
                     rd.forward(request, response);
                     break;
                 }
@@ -98,7 +98,7 @@ public class transacao extends HttpServlet {
         HttpSession session = request.getSession();
         List<ContaEntidade> contas = contaDAO.getContasByUser(idConta);
         session.setAttribute("contas",contas);
-        RequestDispatcher rd = request.getRequestDispatcher("/pages/home/index.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/views/home/index.jsp");
         rd.forward(request, response);
         
     }
