@@ -1,0 +1,6 @@
+#containerPage{
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+    padding: 0px 160px;
+}

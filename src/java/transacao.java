@@ -41,6 +41,7 @@ public class transacao extends HttpServlet {
         throws ServletException, IOException {
         String tipo = request.getParameter("tipo");
         int idConta = Integer.parseInt(request.getParameter("idConta"));
+        int idUsuario = Integer.parseInt(request.getParameter("idUsuario"));
         double valor = Double.parseDouble(request.getParameter("valor"));
         TransacaoDAO transacaoDAO = new TransacaoDAO();
         ContaDAO contaDAO = new ContaDAO();
@@ -96,7 +97,7 @@ public class transacao extends HttpServlet {
                 break;
         }
         HttpSession session = request.getSession();
-        List<ContaEntidade> contas = contaDAO.getContasByUser(idConta);
+        List<ContaEntidade> contas = contaDAO.getContasByUser(idUsuario);
         session.setAttribute("contas",contas);
         RequestDispatcher rd = request.getRequestDispatcher("/views/home/index.jsp");
         rd.forward(request, response);

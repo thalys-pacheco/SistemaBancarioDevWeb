@@ -13,7 +13,6 @@ import java.util.Date;
 
 public class TransacaoDAO implements DAO<TransacaoEntidade>{
      
-    //inserindo conta
     @Override
     public void  insert(TransacaoEntidade transacoes){
         Conexao conexao = new Conexao();
@@ -101,7 +100,7 @@ public class TransacaoDAO implements DAO<TransacaoEntidade>{
         return minhasTransacoes;
     }
     
-        public ArrayList<TransacaoEntidade> getTransacoesByConta(int idConta) {
+    public ArrayList<TransacaoEntidade> getTransacoesByConta(int idConta) {
         ArrayList<TransacaoEntidade> minhasTransacoes = new ArrayList();
         Conexao conexao = new Conexao();
         

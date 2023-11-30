@@ -24,6 +24,7 @@
              
             ContaEntidade conta = contas.get(0);
             
+            int idUsuario = usuario.getId();
             int idConta = conta.getId();
             String nome = usuario.getNome();
         %>
@@ -38,35 +39,35 @@
                     <jsp:param name="titulo" value="Extrato" />
                     <jsp:param name="subtitulo" value="Movimentacoes da Conta" />
                     <jsp:param name="texto" value="With supporting text below as a natural lead-in to additional content." />
-                    <jsp:param name="href" value='<%=String.format("/transacao?idConta=%s",idConta)%>'/>
+                    <jsp:param name="href" value='<%=String.format("/transacao?idConta=%s&idUsuario=%s",idConta,idUsuario)%>'/>
                  </jsp:include>
 
                 <jsp:include page="../../components/buttonUser/buttonUser.jsp">
                     <jsp:param name="titulo" value="Deposito" />
                     <jsp:param name="subtitulo" value="Special title treatment" />
                     <jsp:param name="texto" value="With supporting text below as a natural lead-in to additional content." />
-                    <jsp:param name="href" value='<%=String.format("/views/transacao/index.jsp?tipo=Deposito&idConta=%s",idConta)%>' />
+                    <jsp:param name="href" value='<%=String.format("/views/transacao/index.jsp?tipo=Deposito&idConta=%s&idUsuario=%s",idConta,idUsuario)%>' />
                  </jsp:include>
 
                 <jsp:include page="../../components/buttonUser/buttonUser.jsp">
                     <jsp:param name="titulo" value="Transferencia" />
                     <jsp:param name="subtitulo" value="Special title treatment" />
                     <jsp:param name="texto" value="With supporting text below as a natural lead-in to additional content." />
-                    <jsp:param name="href" value='<%=String.format("/views/transacao/index.jsp?tipo=Transferencia&idConta=%s",idConta)%>' />
+                    <jsp:param name="href" value='<%=String.format("/views/transacao/index.jsp?tipo=Transferencia&idConta=%s&idUsuario=%s",idConta,idUsuario)%>' />
                  </jsp:include>
 
                 <jsp:include page="../../components/buttonUser/buttonUser.jsp">
                     <jsp:param name="titulo" value="Saque" />
                     <jsp:param name="subtitulo" value="Special title treatment" />
                     <jsp:param name="texto" value="With supporting text below as a natural lead-in to additional content." />
-                    <jsp:param name="href" value='<%=String.format("/views/transacao/index.jsp?tipo=Saque&idConta=%s",idConta)%>' />
+                    <jsp:param name="href" value='<%=String.format("/views/transacao/index.jsp?tipo=Saque&idConta=%s&idUsuario=%s",idConta,idUsuario)%>' />
                  </jsp:include>
 
                 <jsp:include page="../../components/buttonUser/buttonUser.jsp">
                     <jsp:param name="titulo" value="Investimento" />
                     <jsp:param name="subtitulo" value="Simular Investimento" />
                     <jsp:param name="texto" value="With supporting text below as a natural lead-in to additional content." />
-                    <jsp:param name="href" value='<%=String.format("/views/transacao/index.jsp?tipo=Investimento&idConta=%s",idConta)%>' />
+                    <jsp:param name="href" value='<%=String.format("/views/transacao/index.jsp?tipo=Investimento&idConta=%s&idUsuario=%s",idConta,idUsuario)%>' />
                  </jsp:include>
             </div>
         </div>

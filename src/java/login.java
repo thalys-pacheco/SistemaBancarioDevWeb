@@ -27,13 +27,6 @@ public class login extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
-        /*
-        UsuarioEntidade adminDefault = new UsuarioEntidade("Diego Admin","admin", "11111111111","diegoadmin@email.com");
-        adminDefault.setId(1);
-        UsuarioProvider.addUsuario(adminDefault);
-        */
-
-    
         String cpf = request.getParameter("cpf");
         String password = request.getParameter("password");
         UsuarioDAO usuarioDAO = new UsuarioDAO();

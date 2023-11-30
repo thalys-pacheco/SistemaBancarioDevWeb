@@ -19,6 +19,7 @@
             
             <input required name="tipo" value="${param.tipo}" type="hidden" />
             <input required name="idConta" value="${param.idConta}" type="hidden" />
+            <input required name="idUsuario" value="${param.idUsuario}" type="hidden" />
             <input id="button" type="submit" value="ENVIAR"/>
         </form>
     </body>

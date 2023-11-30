@@ -10,20 +10,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-/**
- *
- * @author Rodrigo
- */
 public class ContaDAO implements DAO<ContaEntidade>{
     
-    //inserindo conta
     @Override
     public void  insert(ContaEntidade conta){
         Conexao conexao = new Conexao();
         try{
             PreparedStatement sql = conexao.getConexao().prepareStatement("INSERT INTO contas (idUsuario, tipo, saldo) VALUES(?, ?, ?)");
-            
-            
             
             sql.setInt(1, conta.getIdUsuario());
             sql.setString(2, conta.getTipo());
@@ -92,11 +85,9 @@ public class ContaDAO implements DAO<ContaEntidade>{
                     String tipo = (resultado.getString("TIPO"));
                     double saldo = (resultado.getDouble("SALDO"));
                   
-                    
                     ContaEntidade conta = new ContaEntidade(idUsuario, tipo, saldo);
                     conta.setId(id);
                    
-                    
                     minhasContas.add(conta);
                 }
             }
@@ -124,11 +115,9 @@ public class ContaDAO implements DAO<ContaEntidade>{
                     String tipo = (resultado.getString("TIPO"));
                     double saldo = (resultado.getDouble("SALDO"));
                   
-                    
                     ContaEntidade conta = new ContaEntidade(idUsuario, tipo, saldo);
                     conta.setId(id);
                    
-                    
                     minhasContas.add(conta);
                 }
             }
@@ -139,9 +128,7 @@ public class ContaDAO implements DAO<ContaEntidade>{
         }
         return minhasContas;
     }
-    
-
-    
+        
     @Override
     public ContaEntidade get(int id) {
         Conexao conexao = new Conexao();
@@ -155,18 +142,13 @@ public class ContaDAO implements DAO<ContaEntidade>{
             if(resultado!=null){
                 while(resultado.next()){
                     
-
-                    
                     int idUsuario = (resultado.getInt("IDUSUARIO"));
                     String tipo = (resultado.getString("TIPO"));
                     double saldo = (resultado.getDouble("SALDO"));
                   
-                    
                     ContaEntidade conta = new ContaEntidade(idUsuario, tipo, saldo);
                     conta.setId(id);
-                   
-                    
-                    
+
                     return conta;
                 }
             }

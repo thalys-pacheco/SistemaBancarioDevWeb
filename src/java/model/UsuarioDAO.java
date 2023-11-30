@@ -8,8 +8,6 @@ import java.util.ArrayList;
 
 public class UsuarioDAO implements DAO<UsuarioEntidade>{    
     
-    
-    //inserindo usuario
     @Override
     public void  insert(UsuarioEntidade usuario){
         Conexao conexao = new Conexao();
