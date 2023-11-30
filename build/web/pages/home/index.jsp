@@ -19,20 +19,20 @@
         <%
             
             UsuarioEntidade usuario = (UsuarioEntidade) session.getAttribute("usuario");
-            Map<String, Object> usuarioDados = usuario.getDadosUsuario();
             
             List<ContaEntidade> contas = (List<ContaEntidade>) session.getAttribute("contas");
-            Map<String, Object> contaDados = contas.get(0).getDadosConta();
+             
+            ContaEntidade conta = contas.get(0);
             
-            String idConta = String.valueOf(contaDados.get("id"));
-            String nome = String.valueOf(usuarioDados.get("nome"));
+            int idConta = conta.getId();
+            String nome = usuario.getNome();
         %>
         
         <jsp:include page="../../components/header/header.jsp">
             <jsp:param name="title" value='<%=String.format("Ola, %s", nome)%>' />
         </jsp:include>
         <div id="containerPage">
-            <p id="saldo">Saldo: R$<%= contaDados.get("saldo") %></p>
+            <p id="saldo">Saldo: R$<%= conta.getSaldo() %></p>
             <div id="containerButtons">
                 <jsp:include page="../../components/buttonUser/buttonUser.jsp">
                     <jsp:param name="titulo" value="Extrato" />

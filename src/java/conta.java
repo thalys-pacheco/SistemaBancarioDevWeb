@@ -1,17 +1,16 @@
 import entidade.UsuarioEntidade;
-import provider.UsuarioProvider;
-import provider.ContaProvider;
+import model.UsuarioDAO;
+import entidade.ContaEntidade;
+import model.ContaDAO;
 
 import java.io.IOException;
-import java.util.Map;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import entidade.ContaEntidade;
-
 @WebServlet(urlPatterns = {"/conta"})
 public class conta extends HttpServlet {    
     @Override
@@ -20,24 +19,28 @@ public class conta extends HttpServlet {
         String cpf = request.getParameter("cpf");
         String tipo = request.getParameter("tipo");
         if(cpf.isEmpty() || tipo.isEmpty()){
-            RequestDispatcher rd = request.getRequestDispatcher("/pages/cadConta/index.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("/views/cadConta/index.jsp");
             rd.forward(request, response);
         }else{
-            UsuarioEntidade usuario = UsuarioProvider.getUsuario(cpf);
+            UsuarioDAO usuarioDAO = new UsuarioDAO();
+            UsuarioEntidade usuario = usuarioDAO.getByCpf(cpf);
+            
             if(usuario!=null){
-                Map<String, Object> dados = usuario.getDadosUsuario();
-                if("cliente".equals(dados.get("tipo"))){
-                    int id = ContaProvider.getTamanho();
-                    ContaEntidade conta = new ContaEntidade(id, (int) dados.get("id") ,tipo);
-                    ContaProvider.addConta(conta);
-                    RequestDispatcher rd = request.getRequestDispatcher("/pages/admin/index.jsp");
+                
+                if("cliente".equals(usuario.getTipo())){
+                    
+                    ContaEntidade conta = new ContaEntidade( usuario.getId() ,tipo, 0.0);
+                    ContaDAO contaDAO = new ContaDAO();
+                    contaDAO.insert(conta);
+                    
+                    RequestDispatcher rd = request.getRequestDispatcher("/views/admin/index.jsp");
                     rd.forward(request, response);
                 }else{
-                    RequestDispatcher rd = request.getRequestDispatcher("/pages/cadConta/index.jsp");
+                    RequestDispatcher rd = request.getRequestDispatcher("/views/cadConta/index.jsp");
                     rd.forward(request, response);
                 }
             }else{
-                RequestDispatcher rd = request.getRequestDispatcher("/pages/cadConta/index.jsp");
+                RequestDispatcher rd = request.getRequestDispatcher("/views/cadConta/index.jsp");
                 rd.forward(request, response);
             }  
         }
